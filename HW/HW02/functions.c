@@ -9,10 +9,13 @@ unsigned int modprod(unsigned int a, unsigned int b, unsigned int p) {
 	unsigned int za = a;
 	unsigned int ab = 0;
 	unsigned int b_i = 0;
+
+	za = za % p;
+
 	while (b > 0) {
 		b_i = b%2;
 		if (b_i == 1) {
-			ab = (ab + za*b_i) % p;
+			ab = (ab + za) % p;
 		}
 		za =(2*za)%p;
 		b = b/2;
@@ -25,12 +28,16 @@ unsigned int modExp(unsigned int a, unsigned int b, unsigned int p) {
 	unsigned int z = a;
 	unsigned int aExpb = 1;
 	unsigned int b_i = 0;
+	
+	z = z % p;
+
 	while (b > 0) {
 		b_i = b%2;
 		if (b_i == 1) {
 			aExpb = modprod(aExpb, z, b);
-			z = modprod(z, z, p);
 		}
+		z = modprod(z, z, p);
+		b = b/2;
 	}
 	return aExpb;
 }
@@ -87,18 +94,18 @@ unsigned int isProbablyPrime(unsigned int N) {
   /* Q2.1: Complete this part of the isProbablyPrime function using the Miller-Rabin pseudo-code */
   unsigned int r,d;
 
-	unsigned int d = N - 1;
-	unsigned int r = 0
+	d = N - 1;
+	r = 0;
 	while ((d)%2 == 0) {
 		d = d/2;
 		r++;
 	}
 	
 
-  for (unsigned int n=0;n<NsmallPrimes;n++) {
-  	unsigned int x = modprod(int k, d, n);
-	if (x == 1) || (x == N-1) {
-		k++;
+  for (unsigned int n=1;n<NsmallPrimes;n++) {
+  	unsigned int x = modprod(n, d, N);
+	if ((x == 1) || (x == N-1)) {
+		continue;
 	}
 	for (unsigned int i = 1; i < r; i++) {
 		x == modprod(x, x, N);
@@ -106,14 +113,29 @@ unsigned int isProbablyPrime(unsigned int N) {
 			return 0;
 		}
 		if (x == N-1) {
-			k++;
+			continue;
 		}
-	}
-  }
+	} return 0;//false
+  }	
   return 1; //true
 }
 
 //Finds a generator of Z_p using the assumption that p=2*q+1
 unsigned int findGenerator(unsigned int p) {
   /* Q3.3: complete this function and use the fact that p=2*q+1 to quickly find a generator */
+	int q = (p-1)/2;
+	int gen = rand()%(p-1);
+	int b = 0;
+	while (b == 0) {
+		if (modExp(gen, 2, p) == 1) {
+			gen = rand()%(p-1);
+			continue;
+		}
+		else if (modExp(gen, q ,p) == 1) {
+			gen = rand()%(p-1);
+			continue;
+		}
+		b = 1;
+	}
+	return gen;
 }
