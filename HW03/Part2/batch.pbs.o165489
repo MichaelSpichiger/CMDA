@@ -1,0 +1,51 @@
+mpicc -I./. -O3 -g -o main.o -lm -c main.c
+mpicc -I./. -O3 -g -o functions.o -lm -c functions.c
+mpicc  ././main.o ././functions.o -I./. -O3 -g -o main -lm
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 2 slots 
+that were requested by the application:
+  ./main
+
+Either request fewer slots for your application, or make more slots available
+for use.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 4 slots 
+that were requested by the application:
+  ./main
+
+Either request fewer slots for your application, or make more slots available
+for use.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 8 slots 
+that were requested by the application:
+  ./main
+
+Either request fewer slots for your application, or make more slots available
+for use.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 12 slots 
+that were requested by the application:
+  ./main
+
+Either request fewer slots for your application, or make more slots available
+for use.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 16 slots 
+that were requested by the application:
+  ./main
+
+Either request fewer slots for your application, or make more slots available
+for use.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+There are not enough slots available in the system to satisfy the 20 slots 
+that were requested by the application:
+  ./main
+
+Either request fewer slots for your application, or make more slots available
+for use.
+--------------------------------------------------------------------------
