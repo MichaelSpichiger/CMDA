@@ -1,0 +1,71 @@
+make: Nothing to be done for `all'.
+
+ElGamal Setup successful.
+p = 11. 
+g = 2 is a generator of Z_11 
+Secret key: x = 1 
+h = g^x = 2
+
+Using 2 processes to find the secret key...
+Secret key found! x = 1 
+time= -0.000433922 
+throughput = -46091.3 
+Secret key found! x = 1 
+time= -0.000463963 
+throughput = -43106.9 
+
+ElGamal Setup successful.
+p = 139. 
+g = 87 is a generator of Z_139 
+Secret key: x = 11 
+h = g^x = 39
+
+Using 4 processes to find the secret key...
+Secret key found! x = 11 
+time= -0.000559807 
+throughput = -986054 
+Secret key found! x = 103 
+Secret key found! x = 57 
+Secret key found! x = 103 
+
+ElGamal Setup successful.
+p = 46051. 
+g = 22264 is a generator of Z_46051 
+Secret key: x = 3060 
+h = g^x = 11289
+
+Using 8 processes to find the secret key...
+Secret key found! x = 3060 
+time= -0.0137649 
+throughput = -2.67638e+07 
+
+ElGamal Setup successful.
+p = 10842967. 
+g = 544198 is a generator of Z_10842967 
+Secret key: x = 8602297 
+h = g^x = 1933772
+
+Using 12 processes to find the secret key...
+time= -5.19718 
+throughput = -2.50358e+07 
+
+ElGamal Setup successful.
+p = 145933507. 
+g = 39558940 is a generator of Z_145933507 
+Secret key: x = 51726603 
+h = g^x = 99129683
+
+Using 16 processes to find the secret key...
+time= -76.1091 
+throughput = -3.06788e+07 
+
+ElGamal Setup successful.
+p = 661422667. 
+g = 171697938 is a generator of Z_661422667 
+Secret key: x = 263921043 
+h = g^x = 292054143
+
+Using 20 processes to find the secret key...
+Secret key found! x = 43446821 
+time= -333.879 
+throughput = -1.02897e+06 
