@@ -1,0 +1,38 @@
+#! /bin/bash
+
+#PBS -l walltime=00:10:00
+#PBS -l nodes=1:ppn=20
+#PBS -W group_list=newriver
+#PBS -q open_q
+#PBS -j oe
+#PBS -A CMDA3634SP18
+
+cd $PBS_O_WORKDIR
+
+module purge
+module load gcc openmpi
+
+make
+
+
+./main 9 1
+./main 9 2
+./main 9 4
+./main 9 8
+./main 9 12
+./main 9 16
+./main 9 20 
+./main 17 1
+./main 17 2
+./main 17 4
+./main 17 8 
+./main 17 12
+./main 17 16
+./main 17 20 
+./main 25 1
+./main 25 2
+./main 25 4
+./main 25 8
+./main 25 12
+./main 25 16
+./main 25 20 

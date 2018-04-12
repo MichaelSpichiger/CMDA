@@ -9,7 +9,7 @@
 
 int main (int argc, char **argv) {
 
-  int Nthreads = (int) atoi(argv[2]);
+  int Nthreads = 1;
 
   omp_set_num_threads(Nthreads);
 
@@ -25,9 +25,8 @@ int main (int argc, char **argv) {
   //begin with rank 0 getting user's input
 	unsigned int n;
 
-  n = (unsigned int) atoi(argv[1]);
-  //printf("Enter a number of bits: "); fflush(stdout);
-  //char status = scanf("%u",&n);
+  printf("Enter a number of bits: "); fflush(stdout);
+  char status = scanf("%u",&n);
 
   //make sure the input makes sense
   if ((n<8)||(n>31)) {//Updated bounds. 8 is no good (need to encode chars)
@@ -95,7 +94,7 @@ int main (int argc, char **argv) {
    if (found != 1) {
     if (modExp(g,i+1,p)==h) {
       found = 1;
-      printf("Secret key found! x = %u \n", i+1);
+      printf("Secret key found! x = %u \n", i);
     } 
    }
   }

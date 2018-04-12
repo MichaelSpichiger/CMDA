@@ -175,7 +175,7 @@ void ElGamalDecrypt(unsigned int *m, unsigned int *a, unsigned int Nints,
                     unsigned int p, unsigned int x) {
  
   /* Q2.1 Parallelize this function with OpenMP   */
-  #pragma omp parallel for
+  #pragma parallel for
   for (unsigned int i=0; i<Nints;i++) {
     //compute s = a^x
     unsigned int s = modExp(a[i],x,p);
@@ -206,24 +206,37 @@ void padString(unsigned char* string, unsigned int charsPerInt) {
 void convertStringToZ(unsigned char *string, unsigned int Nchars,
                       unsigned int  *Z,      unsigned int Nints) {
   unsigned int charsPerInt = Nchars/Nints;
-  #pragma omp parallel for
-  for (int i = 0; i < Nints; i++) {
-   for (int j = 0; j < charsPerInt; j++) {
-    Z[i] += (int) string[Nchars - (Nints*i) - j - 1] * pow((double) 2, 8 * j );
+  #pragma parallel for
+  for (int i = 0; i < Nchars; i+= charsPerInt) {
+   if (charsPerInt == 1) {
+    Z[i] = (unsigned int) string[i];
+   }
+   if (charsPerInt == 2) {
+    Z[i] = (unsigned int) string[i] + 255 + (256 * (unsigned int) string[i+1]);   
+   }
+   if (charsPerInt == 3) {
+    Z[i] = (unsigned int) string[i] + 255 + 256 * (unsigned int) string[i+1] + 256 * 256 *  (unsigned int) string[i+2];
    }
   }
-  /* Q1.3 Complete this function   */
-  /* Q2.2 Parallelize this function with OpenMP   */
 }
 
 
 void convertZToString(unsigned int  *Z,      unsigned int Nints,
                       unsigned char *string, unsigned int Nchars) {
   unsigned int charsPerInt = Nchars/Nints;
-  #pragma omp parallel for
-  for (int i = 0; i < Nints; i++) {
-   for (int j = 0; j < charsPerInt; j++) {
-    string[Nchars - (Nints*i) - j - 1] = (char) (( int) ((Z[Nints - i - 1])/(pow(2, 8 * (double) j))) % (int) pow(2, 8 * (double) j));
+  #pragma parallel for
+  for (int i = 0; i < Nints; i+= charsPerInt) {
+   if (charsPerInt == 1) {
+    string[i] = (char) Z[i];
+   }
+   if (charsPerInt == 2) {
+    string[i+1] = (char) ((Z[i]-255/256) % 256);
+    string[i] = (char) (Z[i] - 256 * string[i+1]) % 256 + 1; 
+   }
+   if (charsPerInt == 3) {
+    string[i+1] = (char) ((Z[i] - 255)/256) % 256;
+    string[i] = (char) (Z[i] - 256 * string[i+1]) % 256 + 1;
+    string[i+2] = (char) ((Z[i] - ((string[i+1]*256) + (string[i] + 255)))/(256*256));
    }
   } 
   /* Q1.4 Complete this function   */
