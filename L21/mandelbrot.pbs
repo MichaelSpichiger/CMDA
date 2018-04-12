@@ -6,7 +6,7 @@
 #PBS -q open_q
 #PBS -j oe
 
-#cd $PBS_O_WORKDIR
+cd $PBS_O_WORKDIR
 
 #module purge
 #module load gcc cuda

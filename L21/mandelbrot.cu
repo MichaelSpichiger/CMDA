@@ -86,8 +86,8 @@ __global__ void  mandelbrot(int Nre, int Nim, complex_t cmin, complex_t cmax, fl
   
 
 
-      c.r = cmin.r + dr*m;
-      c.i = cmin.i + di*n;
+      c.r = cmin.r + dr*i;
+      c.i = cmin.i + di*j;
       
       count[i+j*Nre] = testpoint(c);
       
@@ -135,8 +135,8 @@ int main(int argc, char **argv){
   clock_t start = clock(); //start time in CPU cycles
 
   // compute mandelbrot set
-  kernelmandelbrot<<< G, B >>>(Nre, Nim, cmin, cmax, count); 
-  cudaMemcpy(a, Nre*Nim*sizeof(float), cudaMemcpyDeviceToHost);  
+  kernelmandelbrot<<< G, B >>>(Nre, Nim, cmin, cmax, a); 
+  cudaMemcpy(a, count, Nre*Nim*sizeof(float), cudaMemcpyDeviceToHost);  
 
   clock_t end = clock(); //start time in CPU cycles
   
