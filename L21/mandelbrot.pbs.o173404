@@ -1,0 +1,84 @@
+nvcc -arch=sm_60 -I. -c mandelbrot.cu
+nvcc -arch=sm_60 -o mandelbrot mandelbrot.o png_util.o -lpng -lm
+Nthreads=1
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=5
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=9
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=13
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=17
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=21
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=25
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=29
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=33
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=37
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=41
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=45
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=49
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=53
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=57
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+Nthreads=61
+elapsed = 0.000000
+Printing mandelbrot.png...done.
+
+Usage:
+ kill [options] <pid|name> [...]
+
+Options:
+ -a, --all              do not restrict the name-to-pid conversion to processes
+                        with the same uid as the present process
+ -s, --signal <sig>     send specified signal
+ -q, --queue <sig>      use sigqueue(2) rather than kill(2)
+ -p, --pid              print pids without signaling them
+ -l, --list [=<signal>] list signal names, or convert one to a name
+ -L, --table            list signal names and numbers
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+For more details see kill(1).
+
+Usage:
+ kill [options] <pid|name> [...]
+
+Options:
+ -a, --all              do not restrict the name-to-pid conversion to processes
+                        with the same uid as the present process
+ -s, --signal <sig>     send specified signal
+ -q, --queue <sig>      use sigqueue(2) rather than kill(2)
+ -p, --pid              print pids without signaling them
+ -l, --list [=<signal>] list signal names, or convert one to a name
+ -L, --table            list signal names and numbers
+
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+For more details see kill(1).

@@ -63,7 +63,7 @@ __device__ int testpoint(complex_t c){
 // record the  iteration counts in the count array
 
 // Q2c: transform this function into a CUDA kernel
-__global__ void  mandelbrot(int Nre, int Nim, complex_t cmin, complex_t cmax, float *count){ 
+__global__ void  kernelmandelbrot(int Nre, int Nim, complex_t cmin, complex_t cmax, float *count){ 
   
   int tIdx = threadIdx.x;
   int tIdy = threadIdx.y;
@@ -74,10 +74,8 @@ __global__ void  mandelbrot(int Nre, int Nim, complex_t cmin, complex_t cmax, fl
   int bSizex = blockDim.x;
   int bSizey = blockDim.y;
 
-  int i = tIdx + bIdx*bSizex;
-  int j = tIdy + bIdy*bSizey;
-
-  int n,m;
+  int i = tIdx + BIdx*bSizex;
+  int j = tIdy + BIdy*bSizey;
 
   complex_t c;
 
