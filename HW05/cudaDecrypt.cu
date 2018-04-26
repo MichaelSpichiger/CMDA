@@ -66,11 +66,11 @@ int main (int argc, char **argv) {
     and the cyphertexts from messages.txt. */
 
   FILE* key;
-  key = fopen("public_key.txt", "r");
+  key = fopen("bonus_public_key.txt", "r");
   fscanf(key, "%u \n %u \n %u \n %u \n", &n, &p, &g, &h);
   fclose(key);
 
-  FILE* mess = fopen("message.txt", "r");
+  FILE* mess = fopen("bonus_message.txt", "r");
   fscanf(mess, "%u \n", &Nints);
   
   unsigned int *Zmessage = (unsigned int *) malloc(Nints*sizeof(unsigned int));
