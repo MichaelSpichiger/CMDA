@@ -96,7 +96,7 @@ int main (int argc, char **argv) {
     printf("Finding the secret key...\n");
     cudaMalloc(&d_k, sizeof(unsigned int));
     double startTime = clock();
-    kernelFindKey <<< Nblocks, Nthreads >>> (g, p, h, *d_k);
+    kernelFindKey <<< Nblocks, Nthreads >>> (g, p, h, d_k);
     cudaMemcpy(h_k, d_k, sizeof(unsigned int), cudaMemcpyDeviceToHost);
     cudaDeviceSynchronize();
     x = *h_k;

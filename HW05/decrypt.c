@@ -64,7 +64,7 @@ for (unsigned int j=0; j < Nints; j++) {
 
   /* Q3 After finding the secret key, decrypt the message */
   unsigned int bufferSize = 1024;
-  unsigned int *message = (unsigned char *) malloc(bufferSize*sizeof(unsigned char));
+  unsigned char *message = (unsigned char *) malloc(bufferSize*sizeof(unsigned char));
   unsigned int  Nchars = ((n-1)/8)*Nints;
   ElGamalDecrypt(Zmessage, a, Nints, p, x);
   convertZToString(Zmessage, Nints, message, Nchars);
