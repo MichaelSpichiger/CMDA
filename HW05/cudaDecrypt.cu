@@ -7,24 +7,6 @@
 #include "cuda.h"
 #include "functions.c"
 
-   __global__ void kernelFindKey(unsigned int g,unsigned int p, unsigned int h, unsigned int *pointer) {
-   
-   int thread = threadIdx.x;
-   int block = blockIdx.x;
-   int Nblock = blockDim.x;
-
-   int id = thread + block*Nblock;
-
-   if (id<(p-1)) {
-   if (modE(g,id,p)==h) {
-        printf("Secret key found! x = %u \n", id);
-        *pointer = id;
-      } 
-   }
-}
-for (unsigned int j=0; j < Nints; j++) {
-	printf("%u %u \n", Zmessage[j], a[j]);
-}
   __device__ unsigned int modP(unsigned int a, unsigned int b, unsigned int p) {
   unsigned int za = a;
   unsigned int ab = 0;
@@ -43,12 +25,28 @@ for (unsigned int j=0; j < Nints; j++) {
   unsigned int aExpb = 1;
 
   while (b > 0) {
-    if (b%2 == 1) aExpb = modprod(aExpb, z, p);
-    z = modprod(z, z, p);
+    if (b%2 == 1) aExpb = modP(aExpb, z, p);
+    z = modP(z, z, p);
     b /= 2;
   }
   return aExpb;
 }
+   __global__ void kernelFindKey(unsigned int g,unsigned int p, unsigned int h, unsigned int *pointer) {
+   
+   int thread = threadIdx.x;
+   int block = blockIdx.x;
+   int Nblock = blockDim.x;
+
+   int id = thread + block*Nblock;
+
+   if (id<(p-1)) {
+   if (modE(g,id,p)==h) {
+        printf("Secret key found! x = %u \n", id);
+        *pointer = id;
+      } 
+   }
+}
+
 int main (int argc, char **argv) {
 
   /* Part 2. Start this program by first copying the contents of the main function from 
@@ -77,7 +75,10 @@ int main (int argc, char **argv) {
   
   unsigned int *Zmessage = (unsigned int *) malloc(Nints*sizeof(unsigned int));
   unsigned int *a = (unsigned int *) malloc(Nints*sizeof(unsigned int));
-  
+ for (unsigned int j=0; j < Nints; j++) {
+	printf("%u %u \n", Zmessage[j], a[j]);
+}
+ 
   for (unsigned int i=0; i < Nints; i++) {
    fscanf(mess, "%u %u \n", &Zmessage[i], &a[i]);
   }
