@@ -75,9 +75,6 @@ int main (int argc, char **argv) {
   
   unsigned int *Zmessage = (unsigned int *) malloc(Nints*sizeof(unsigned int));
   unsigned int *a = (unsigned int *) malloc(Nints*sizeof(unsigned int));
- for (unsigned int j=0; j < Nints; j++) {
-	printf("%u %u \n", Zmessage[j], a[j]);
-}
  
   for (unsigned int i=0; i < Nints; i++) {
    fscanf(mess, "%u %u \n", &Zmessage[i], &a[i]);
@@ -99,9 +96,10 @@ int main (int argc, char **argv) {
     kernelFindKey <<< Nblocks, Nthreads >>> (g, p, h, d_k);
     cudaMemcpy(h_k, d_k, sizeof(unsigned int), cudaMemcpyDeviceToHost);
     cudaDeviceSynchronize();
+
     x = *h_k;
-    printf("Secret key found! x = %u \n", x);
     double endTime = clock();
+    printf("Secret key found! x = %u \n", x);
 
     double totalTime = (endTime-startTime)/CLOCKS_PER_SEC;
     double work = (double) p;
